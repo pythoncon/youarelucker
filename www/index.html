@@ -15,11 +15,25 @@
   </div>
 </header>
 <div class="page-content">
-  <img class="image-holder" src="/static/img/ready.jpg">
-  </img>
-  <div>
-    <button id="submitBtn" class="btn">Click Me</button>
-  </div>
+  <img class="image-holder" src="/static/img/ready.jpg"></img>
 </div>
+<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.image-holder').click(function() {
+        $.ajax({
+            url: '/lucky',
+            type: 'GET'
+        })
+        .done(function(data) {
+            if (data) {
+                $('.image-holder').attr('src', '/static/' + data);
+            } else {
+                alert('no more lucker!');
+            }
+        });
+    });
+});
+</script>
 </body>
 </html>

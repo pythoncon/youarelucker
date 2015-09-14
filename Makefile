@@ -4,6 +4,7 @@ all: clean test
 
 clean:
 	@echo cleaning...
+	rm -rf www/upload/*
 
 test:
 	@echo building test...
