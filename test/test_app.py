@@ -13,16 +13,24 @@ UPLOAD_PATH = os.path.join(_src_path, '..', 'www', 'upload')
 class AppTest(unittest.TestCase):
     def setUp(self):
         super(AppTest, self).setUp()
+        self._clear_uploaded()
+        self._mock_session()
+
+    def _clear_uploaded(self):
         for file_name in os.listdir(UPLOAD_PATH):
             if not file_name.startswith('.'):
                 os.remove(os.path.join(UPLOAD_PATH, file_name))
+
+    def _mock_session(self):
+        from bottle import request
+        request.environ['beaker.session'] = {}
 
     def test_lucky_return_None_if_no_file(self):
         self.assertEqual(lucky(), None)
 
     def test_lucky_return_file_path_if_one_file(self):
         self._add_file('a.jpg')
-        self.assertEqual(lucky(), 'upload/.a.jpg')
+        self.assertEqual(lucky(), 'upload/a.jpg')
 
     def test_lucky_return_different_result_on_different_request(self):
         self._add_file('a.jpg')

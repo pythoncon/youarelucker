@@ -23,4 +23,4 @@ Pick up the good lucker from Hangzhou Pycon2015 attendees.
 
 ### How to run
 
-* Make sure you have bottle.py installed, you can get it from http://bottlepy.org. The simplest way may be with `pip install bottle`
+* Make sure you have `bottle` and `beaker` installed, you can get it from http://bottlepy.org. The simplest way may be with `pip install bottle beaker`
